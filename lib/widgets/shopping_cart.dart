@@ -31,8 +31,10 @@ class ShoppingCartWidget extends StatelessWidget {
             ),
            Consumer<ShoppingCart>(
       builder: (context, provider, child) {
-        print(provider.count);
-                return Column(
+        
+                return provider.count == 0 ? Center(child: Column( crossAxisAlignment: CrossAxisAlignment.center, mainAxisAlignment:MainAxisAlignment.center, children:[
+SizedBox(height: 150,), Image.asset("assets/images/empty-cart.png", width: MediaQuery.of(context).size.width / 1.8,), SizedBox(height: 30,), Text("Your cart is empty, kindly add a product", style: titletextStyle,)
+                ] )) : Column(
                   children: provider.cart
                       .map((cartItem) => CartItemWidget(cartItem: cartItem,))
                       .toList(),
@@ -49,7 +51,7 @@ class ShoppingCartWidget extends StatelessWidget {
               child: CustomButton(color: HexColor(cBlue), onTap: (){}, borderColor: Colors.transparent,  width: MediaQuery.of(context).size.width / 2.2, content: Center(
                 child: Text(
 
-                  "Pay",
+                  "Check Out",
                   style: btntextStyle,
 // "Pay (\$${cartController.totalCartPrice.value.toStringAsFixed(2)})"
                 ),

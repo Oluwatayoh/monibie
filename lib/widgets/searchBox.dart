@@ -112,8 +112,6 @@ class _SearchBoxState extends State<SearchBox> {
                     ),
                   );
       },
-
-
       child: Consumer<ShoppingCart>(
         builder: (context, provider, child)  {
           return Badge(

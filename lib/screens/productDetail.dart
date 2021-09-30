@@ -322,7 +322,6 @@ class _ProductDetailsState extends State<ProductDetails> {
                 onTap: (){
 
 CartItemModel product = CartItemModel.fromMap(widget.product);
-print(product.id);
  bool _isItemAlreadyAdded(CartItemModel product) =>
       context.read<ShoppingCart>().cart
           .where((item) => item.id == product.id)

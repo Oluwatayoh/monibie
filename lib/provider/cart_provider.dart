@@ -15,5 +15,8 @@ class ShoppingCart with ChangeNotifier {
     notifyListeners();
   }
 
-
+ void removeItem(CartItemModel item) {
+    _shoppingCart.remove(item);
+    notifyListeners();
+  }
 }
