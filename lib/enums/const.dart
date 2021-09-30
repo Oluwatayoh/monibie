@@ -1,3 +1,4 @@
+import 'dart:ffi';
 import 'dart:ui';
 
 import 'package:badges/badges.dart';
@@ -120,34 +121,44 @@ List flashSales = [
 
 List recommendedItems = [
   {
+    "id": 1,
     "image": "assets/images/recommend/1.jpeg",
     "desc": "Addidas Bag",
     "price": 3400,
     "previousPrice": 8500,
-    "discount": 31
+    "discount": 31,
+    "quantity":1
   },
   {
+    "id": 2,
     "image": "assets/images/recommend/2.jpg",
     "desc": "Tecno Phantom X",
     "previousPrice": 0,
     "price": 76000,
-    "discount": 0
+    "discount": 0,
+     "quantity":1
   },
   {
+    "id": 3,
     "image": "assets/images/recommend/3.jpg",
     "desc": "Tecno Spark 4 Case",
     "price": 2000,
     "previousPrice": 0,
-    "discount": 0
+    "discount": 0,
+     "quantity":1
   },
   {
+    "id": 4,
     "image": "assets/images/recommend/4.png",
     "desc": "Oppo X20 Blaze",
     "price": 100000,
     "previousPrice": 180000,
-    "discount": 20
+    "discount": 20,
+     "quantity":1
   }
 ];
+
+List shoppingCartList = [];
 
 final List<String> imgList = [
   'assets/images/topSliderImages/i.png',
@@ -189,3 +200,6 @@ final List<String> reviewImage = [
   'assets/images/icons/r3.png',
   'assets/images/icons/r4.png',
 ];
+
+
+double totalAmount = 0.0;

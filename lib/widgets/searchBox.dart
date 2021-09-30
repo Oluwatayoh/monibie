@@ -2,7 +2,12 @@ import 'package:badges/badges.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:hexcolor/hexcolor.dart';
+import 'package:modal_bottom_sheet/modal_bottom_sheet.dart';
 import 'package:monibie/enums/const.dart';
+import 'package:monibie/provider/cart_provider.dart';
+import 'package:monibie/widgets/shopping_cart.dart';
+import 'package:provider/provider.dart';
+import 'package:provider/src/provider.dart';
 
 class SearchBox extends StatefulWidget {
   final String text;
@@ -30,6 +35,7 @@ class _SearchBoxState extends State<SearchBox> {
 
   @override
   Widget build(BuildContext context) {
+    ShoppingCart pn = Provider.of<ShoppingCart>(context);
     return Container(
       padding: EdgeInsets.all(20),
       child: Row(
@@ -89,30 +95,44 @@ class _SearchBoxState extends State<SearchBox> {
           SizedBox(
             width: 20,
           ),
-          _notificationBadge()
+          _notificationBadge(pn)
         ],
       ),
     );
   }
 
-  Widget _notificationBadge() {
+  Widget _notificationBadge(pn) {
     return InkWell(
-      onTap: () => Navigator.pushNamed(context, '/cart'),
-      child: Badge(
-          position: BadgePosition.topEnd(top: -10, end: -10),
-          animationDuration: Duration(milliseconds: 300),
-          animationType: BadgeAnimationType.slide,
-          badgeColor: Colors.red,
-          showBadge: true,
-          badgeContent: Text(
-            "15",
-            style: TextStyle(color: Colors.white, fontSize: 8),
-          ),
-          child: SvgPicture.asset(
-            'assets/images/icons/cart.svg',
-            width: 30,
-            color: Colors.black,
-          )),
+      onTap: () {
+        showBarModalBottomSheet(
+                    context: context,
+                    builder: (context) => Container(
+                      color: Colors.white,
+                      child: ShoppingCartWidget(),
+                    ),
+                  );
+      },
+
+
+      child: Consumer<ShoppingCart>(
+        builder: (context, provider, child)  {
+          return Badge(
+              position: BadgePosition.topEnd(top: -5, end: -10),
+              animationDuration: Duration(milliseconds: 300),
+              animationType: BadgeAnimationType.slide,
+              badgeColor: Colors.red,
+              showBadge:provider.count== 0 ?false : true,
+              badgeContent: Text(
+              provider.count == 0 ? "":  "${provider.count}",
+                style: TextStyle(color: Colors.white, fontSize: 8),
+              ),
+              child: SvgPicture.asset(
+                'assets/images/icons/cart.svg',
+                width: 30,
+                color: Colors.black,
+              ));
+        }
+      ),
     );
   }
 }

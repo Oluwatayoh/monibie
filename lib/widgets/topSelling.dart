@@ -53,6 +53,12 @@ class _TopSellingItemsState extends State<TopSellingItems> {
   }
 
   @override
+  void dispose() {
+    timer!.cancel();
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Container(
       padding: EdgeInsets.all(10),
