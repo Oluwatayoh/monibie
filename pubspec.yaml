@@ -32,6 +32,9 @@ dependencies:
   intl: ^0.17.0
   flutter_rating_bar: ^4.0.0
   percent_indicator: ^3.0.1
+  modal_bottom_sheet: ^2.0.0
+  provider: ^5.0.0
+  flutter_awesome_alert_box: ^2.1.1
 
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.

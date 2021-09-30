@@ -26,143 +26,133 @@ class _HomeScreenState extends State<HomeScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return SafeArea(
-      child: Scaffold(
-        extendBody: true,
-        body: Dashboard(),
-        bottomNavigationBar: DotNavigationBar(
-          enableFloatingNavBar: true,
-          paddingR: EdgeInsets.all(20),
-          marginR: EdgeInsets.all(0),
-          currentIndex: _SelectedTab.values.indexOf(_selectedTab),
-          onTap: _handleIndexChanged,
-          dotIndicatorColor: Colors.transparent,
-          items: [
-            /// Home
-            DotNavigationBarItem(
-              icon: Column(
-                children: [
-                  SvgPicture.asset(
-                    'assets/images/icons/home.svg',
-                    width: 20,
+    return Scaffold(
+        backgroundColor: HexColor(cgreyLight),
+      extendBody: false,
+      body: Padding(
+        padding: const EdgeInsets.only(top:20.0),
+        child: Dashboard(),
+      ),
+      bottomNavigationBar: DotNavigationBar(
+        enableFloatingNavBar: true,
+        paddingR: EdgeInsets.all(10),backgroundColor: Colors.blueGrey.shade100.withOpacity(0.2),
+        marginR: EdgeInsets.all(0),
+        currentIndex: _SelectedTab.values.indexOf(_selectedTab),
+        onTap: _handleIndexChanged,
+        dotIndicatorColor: Colors.transparent,
+        items: [
+          /// Home
+          DotNavigationBarItem(
+            icon: Column(
+              children: [
+                SvgPicture.asset(
+                  'assets/images/icons/home.svg',
+                  width: 20,
+                  color: _selectedTab == _SelectedTab.home
+                      ? HexColor(cPurpleDeep)
+                      : Colors.black,
+                ),
+                SizedBox(height: 5),
+                Text(
+                  "Home",
+                  style: TextStyle(
+                    fontFamily: 'Nunito-Medium',
+                    fontSize: 11.0,
                     color: _selectedTab == _SelectedTab.home
                         ? HexColor(cPurpleDeep)
                         : Colors.black,
                   ),
-                  SizedBox(height: 5),
-                  Text(
-                    "Home",
-                    style: TextStyle(
-                      fontFamily: 'Nunito-Medium',
-                      fontSize: 11.0,
-                      color: _selectedTab == _SelectedTab.home
-                          ? HexColor(cPurpleDeep)
-                          : Colors.black,
-                    ),
-                  )
-                ],
-              ),
-              selectedColor: Colors.purple,
+                )
+              ],
             ),
+            selectedColor: Colors.purple,
+          ),
 
-            /// Likes
-            DotNavigationBarItem(
-              icon: Column(
-                children: [
-                  SvgPicture.asset(
-                    'assets/images/icons/feeds.svg',
-                    width: 20,
+          /// Likes
+          DotNavigationBarItem(
+            icon: Column(
+              children: [
+                SvgPicture.asset(
+                  'assets/images/icons/feeds.svg',
+                  width: 20,
+                  color: _selectedTab == _SelectedTab.feeds
+                      ? HexColor(cPurpleDeep)
+                      : Colors.black,
+                ),
+                SizedBox(height: 5),
+                Text(
+                  "Categories",
+                  style: TextStyle(
+                    fontFamily: 'Nunito-Medium',
+                    fontSize: 11.0,
                     color: _selectedTab == _SelectedTab.feeds
                         ? HexColor(cPurpleDeep)
                         : Colors.black,
                   ),
-                  SizedBox(height: 5),
-                  Text(
-                    "Categories",
-                    style: TextStyle(
-                      fontFamily: 'Nunito-Medium',
-                      fontSize: 11.0,
-                      color: _selectedTab == _SelectedTab.feeds
-                          ? HexColor(cPurpleDeep)
-                          : Colors.black,
-                    ),
-                  )
-                ],
-              ),
-              selectedColor: Colors.purple,
+                )
+              ],
             ),
+            selectedColor: Colors.purple,
+          ),
 
-            /// Search
-            DotNavigationBarItem(
-              icon: Column(
-                children: [
-                  SvgPicture.asset(
-                    'assets/images/icons/chat-filled.svg',
-                    width: 20,
+          /// Search
+          DotNavigationBarItem(
+            icon: Column(
+              children: [
+                SvgPicture.asset(
+                  'assets/images/icons/chat-filled.svg',
+                  width: 20,
+                  color: _selectedTab == _SelectedTab.chat
+                      ? HexColor(cPurpleDeep)
+                      : Colors.black,
+                ),
+                SizedBox(height: 5),
+                Text(
+                  "Chat",
+                  style: TextStyle(
+                    fontFamily: 'Nunito-Medium',
+                    fontSize: 11.0,
                     color: _selectedTab == _SelectedTab.chat
                         ? HexColor(cPurpleDeep)
                         : Colors.black,
                   ),
-                  SizedBox(height: 5),
-                  Text(
-                    "Chat",
-                    style: TextStyle(
-                      fontFamily: 'Nunito-Medium',
-                      fontSize: 11.0,
-                      color: _selectedTab == _SelectedTab.chat
-                          ? HexColor(cPurpleDeep)
-                          : Colors.black,
-                    ),
-                  )
-                ],
-              ),
-              selectedColor: Colors.purple,
+                )
+              ],
             ),
+            selectedColor: Colors.purple,
+          ),
 
-            /// Profile
-            DotNavigationBarItem(
-              icon: Column(
-                children: [
-                  _naccountBadge(_selectedTab),
-                  SizedBox(height: 5),
-                  Text(
-                    "Account",
-                    style: TextStyle(
-                      fontFamily: 'Nunito-Medium',
-                      fontSize: 11.0,
-                      color: _selectedTab == _SelectedTab.account
-                          ? HexColor(cPurpleDeep)
-                          : Colors.black,
-                    ),
-                  )
-                ],
-              ),
-              selectedColor: Colors.purple,
+          /// Profile
+           DotNavigationBarItem(
+            icon: Column(
+              children: [
+                SvgPicture.asset(
+                'assets/images/icons/account-filled.svg',
+                  width: 20,
+                  color: _selectedTab == _SelectedTab.account
+                      ? HexColor(cPurpleDeep)
+                      : Colors.black,
+                ),
+                SizedBox(height: 5),
+                Text(
+                  "Account",
+                  style: TextStyle(
+                    fontFamily: 'Nunito-Medium',
+                    fontSize: 11.0,
+                    color: _selectedTab == _SelectedTab.account
+                        ? HexColor(cPurpleDeep)
+                        : Colors.black,
+                  ),
+                )
+              ],
             ),
-          ],
-        ),
+            selectedColor: Colors.purple,
+          ), 
+        
+         
+        ],
       ),
     );
   }
 }
 
-Widget _naccountBadge(_selectedTab) {
-  return Badge(
-    position: BadgePosition.topEnd(top: -10, end: -10),
-    animationDuration: Duration(milliseconds: 300),
-    animationType: BadgeAnimationType.slide,
-    badgeColor: Colors.red,
-    showBadge: true,
-    badgeContent: Text(
-      "15",
-      style: TextStyle(color: Colors.white, fontSize: 8),
-    ),
-    child: SvgPicture.asset(
-      'assets/images/icons/account-filled.svg',
-      width: 20,
-      color: _selectedTab == _SelectedTab.account
-          ? HexColor(cPurpleDeep)
-          : Colors.black,
-    ),
-  );
-}
